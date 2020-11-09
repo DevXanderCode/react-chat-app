@@ -5,7 +5,20 @@ function App() {
 		<div className="App">
 			<Router>
 				<Switch>
-					<Route />
+					<Route
+						path="/login"
+						render={(props) => {
+							return <h1>Login</h1>;
+						}}
+					/>
+
+					<Route
+						exact
+						path="/"
+						render={(props) => {
+							return <h1>Home</h1>;
+						}}
+					/>
 				</Switch>
 			</Router>
 		</div>
