@@ -1,7 +1,12 @@
+import * as React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as chatActions from './store/actions/chatActions';
 
-function App() {
+function App({ setupSocket, ...props }) {
+	React.useEffect(() => {
+		setupSocket();
+	}, []);
 	return (
 		<div className="App">
 			<Router>
@@ -31,6 +36,10 @@ const mapStateToProps = (state) => ({
 	...state.chat
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+	setupSocket: () => {
+		dispatch(chatActions.setupSocket());
+	}
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
