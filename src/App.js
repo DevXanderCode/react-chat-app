@@ -9,6 +9,14 @@ function App({ setupSocket, ...props }) {
 	}, []);
 	return (
 		<div className="App">
+			<button
+				onClick={(e) => {
+					e.preventDefault();
+					props.socket && props.socket.send(JSON.stringify({ type: 'Hello', data: 'world' }));
+				}}
+			>
+				Send Message
+			</button>
 			<Router>
 				<Switch>
 					<Route
