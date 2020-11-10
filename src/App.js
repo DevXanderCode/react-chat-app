@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as chatActions from './store/actions/chatActions';
+import Auth from './components/pages/Auth';
 
-function App({ setupSocket, ...props }) {
+function App({ setupSocket, token, ...props }) {
 	React.useEffect(() => {
 		setupSocket();
 	}, []);
@@ -19,18 +20,18 @@ function App({ setupSocket, ...props }) {
 			</button>
 			<Router>
 				<Switch>
-					<Route
-						path="/login"
-						render={(props) => {
-							return <h1>Login</h1>;
-						}}
-					/>
+					<Route path="/login" component={Auth} />
+					<Route path="/signup" component={Auth} />
 
 					<Route
 						exact
 						path="/"
 						render={(props) => {
-							return <h1>Home</h1>;
+							if (!token) {
+								return <Redirect to="/login" />;
+							} else {
+								return <h1>Home</h1>;
+							}
 						}}
 					/>
 				</Switch>
