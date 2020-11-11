@@ -5,7 +5,7 @@ import * as AuthActions from '../../store/actions/authActions';
 import { Signup, Login } from '../partials';
 
 const Auth = ({ ...props }) => {
-	return <div className="auth-wrapper">{props.match.params.view === 'signup' ? <Signup /> : <Login />}</div>;
+	return <div className="auth-wrapper">{props.match.path === '/signup' ? <Signup /> : <Login />}</div>;
 };
 
 const mapStateToProps = (state) => ({
