@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as chatActions from './store/actions/chatActions';
 import Auth from './components/pages/Auth';
 

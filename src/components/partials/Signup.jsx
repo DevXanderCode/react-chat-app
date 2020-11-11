@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Signup = (props) => {
 	return (
-		<div>
+		<div className="form-wrapper">
 			<h2>Signup</h2>
 		</div>
 	);
