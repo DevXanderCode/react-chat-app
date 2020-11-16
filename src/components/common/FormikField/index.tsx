@@ -19,8 +19,11 @@ interface FormikFieldProps {
 const useStyles = makeStyles(theme => ({
   root: {
     borderRadius: '30px',
-    height: "60px"
-	}
+    height: "95px"
+  },
+  errorMessage: {
+    margin: "5px"
+  }
 }));
 
 const FormikField: React.FC<FormikFieldProps> = ({
@@ -45,7 +48,7 @@ const FormikField: React.FC<FormikFieldProps> = ({
 
   const classes= useStyles();
   return (
-    <div className='formikField mt-3' >
+    <div className='formikField' >
       <Field
         required={required}
         name={name}
@@ -55,8 +58,8 @@ const FormikField: React.FC<FormikFieldProps> = ({
         label={label}
         type={type}
         fullWidth
-        className={ `${rounded} && ${classes.root}`}
-        helperText={<ErrorMessage name={name} />}
+        className={classes.root}
+        helperText={<ErrorMessage name={name} className={classes.errorMessage} />}
         InputProps={{
           endAdornment: icon
         }}

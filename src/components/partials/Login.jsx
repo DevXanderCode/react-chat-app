@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 		textTransform: 'uppercase',
 		transition: 'transform 80ms ease-in',
 		outline: 'none',
-		marginBottom: '2rem',
+		marginBottom: '1rem',
 
 		'&:hover': {
 			color: 'black',
