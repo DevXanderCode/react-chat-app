@@ -55,14 +55,17 @@ const useStyles = makeStyles({
 const Auth = ({ ...props }) => {
 	const classes = useStyles();
 	return Styled.it(
-		`.auth-wrapper{	background: #f6f5f7;
+		`.auth-wrapper{	
+		background: #f6f5f7;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
 		font-family: 'Montserrat', sans-serif;
 		height: 100vh;
-		margin: -30px 0 50px;}
+		margin: -30px 0 50px;
+		transition: all 0.6s ease-in-out
+		}
 		h1 {
 			font-weight: bold;
 			margin: 0;
@@ -82,31 +85,31 @@ const Auth = ({ ...props }) => {
 		.auth-container{
 			background-color: #fff;
 			border-radius: 10px;
-			  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 					0 10px 10px rgba(0,0,0,0.22);
 			position: relative;
 			overflow: hidden;
 			width: 768px;
 			max-width: 100%;
 			min-height: 480px;
+			transition: all 0.6s ease-in-out;
 		}
-			.form-container {
-				position: absolute;
-				top: 0;
-				height: 100%;
-				transition: all 0.6s ease-in-out;
-			}
-			.overlay-container {
-				position: absolute;
-				top: 0;
-				left: 50%;
-				width: 50%;
-				height: 100%;
-				overflow: hidden;
-				transition: transform 0.6s ease-in-out;
-				z-index: 100;
-			}
-			.overlay {
+		.form-container {
+			position: absolute;
+			top: 0;
+			height: 100%;
+			transition: all 0.6s ease-in-out;
+		}
+		.overlay-container {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			height: 100%;
+			overflow: hidden;
+			transition: all 0.6s ease-in-out;
+			z-index: 100;
+		}
+		.overlay {
 			background: #FF416C;
 			background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
 			background: linear-gradient(to right, #FF4B2B, #FF416C);
@@ -119,39 +122,132 @@ const Auth = ({ ...props }) => {
 			height: 100%;
 			width: 200%;
 			transform: translateX(0);
-			transition: transform 0.6s ease-in-out;
+			transition: all 0.6s ease-in-out;
 		}
-		.overlay-panel {
+	    .overlay-panel {
 			position: absolute;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
-			padding: 0 40px;
+			padding: 0 30px 0 30px;
 			text-align: center;
 			top: 0;
 			height: 100%;
 			width: 50%;
 			transform: translateX(0);
-			transition: transform 0.6s ease-in-out;
+			transition: all 0.6s ease-in-out;
+		}
+		.size-overlay {
+			width: 50%;
+			text-align: center;
+			transform: translateX(0);
+			transition: all 0.6s ease-in-out;
 		}
 		.overlay-right {
 			right: 0;
 			transform: translateX(0);
+			transition: all 0.6s ease-in-out;
+		}
+		.overlay-left {
+			transform: translateX(-20%);
+			transition: all 0.6s ease-in-out;
+		}
+		.form-container.right-panel-active .sign-up-container {
+			transform: translateX(100%);
+			opacity: 1;
+			z-index: 5;
+			animation: show 0.6s;
+		}
+		.desktop-d-none{
+			display: none
+		}
+		@media only screen and (max-width: 768px){
+			.size-overlay{
+				width: 100%;
+				text-align: center;
+				transition: all 0.6s ease-in-out;
+			}
+			.mobile-d-none{
+				display: none
+			}
+			.mobile-overlay-container{
+			position: static;
+			overflow: hidden;
+			transition: all 0.6s ease-in-out;
+			z-index: 100;
+			}
+			.mobile-overlay{
+				background: #FF416C;
+			background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+			background: linear-gradient(to right, #FF4B2B, #FF416C);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: 0 0;
+			color: #FFFFFF;
+			position: static;
+			height: 100%;
+			transform: translateX(0);
+			transition: all 0.6s ease-in-out;
+			padding: 20px 0;
+			}
+			.mobile-overlay-panel{
+				position: static;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			padding: 0 30px 0 30px;
+			text-align: center;
+			// top: 0;
+			height: 100%;
+			// width: 50%;
+			transform: translateX(0);
+			transition: all 0.6s ease-in-out;
+			}
+			.desktop-d-none{
+				display: block
+			}
 		}
 		`,
 		<div className="auth-wrapper">
 			<div className="auth-container">
 				{props.match.path === '/signup' ? (
 					<div>
-						<Signup className="form-container" />
+						<Signup className="form-container right-panel-active sign-up-container" />
+						<div className=" size-overlay overlay-container">
+							<div className="overlay">
+								<div className="overlay-panel size-overlay overlay-left">
+									<h1>Welcome Back!</h1>
+									<p>To keep connected with us please login with your personal info</p>
+									<Link to="/login" style={{ textDecoration: 'none' }}>
+										<Button className={classes.ghost} id="signUp">
+											Login
+										</Button>
+									</Link>
+								</div>
+							</div>
+						</div>
 					</div>
 				) : (
 					<div>
+						<div className="desktop-d-none size-overlay mobile-overlay-container">
+							<div className="mobile-overlay">
+								<div className="mobile-overlay-panel size-overlay">
+									<h1>Hello, Friend!</h1>
+									<p>Enter your personal details and start journey with us</p>
+									<Link to="/signup" style={{ textDecoration: 'none' }}>
+										<Button className={classes.ghost} id="signUp">
+											Sign Up
+										</Button>
+									</Link>
+								</div>
+							</div>
+						</div>
 						<Login className="form-container" />
-						<div className="overlay-container" style={{ width: '50%' }}>
+						<div className="mobile-d-none size-overlay overlay-container">
 							<div className="overlay">
-								<div className="overlay-panel overlay-right">
+								<div className="overlay-panel size-overlay overlay-right">
 									<h1>Hello, Friend!</h1>
 									<p>Enter your personal details and start journey with us</p>
 									<Link to="/signup" style={{ textDecoration: 'none' }}>

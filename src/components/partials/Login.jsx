@@ -21,6 +21,8 @@ const useStyles = makeStyles({
 		letterSpacing: '1px',
 		textTransform: 'uppercase',
 		transition: 'transform 80ms ease-in',
+		outline: 'none',
+		marginBottom: '2rem',
 
 		'&:hover': {
 			color: 'black',
@@ -32,12 +34,16 @@ const useStyles = makeStyles({
 		},
 
 		'&:active': {
-			transform: 'scale(0.95)'
+			transform: 'scale(0.95)',
+			outline: 'none'
 		}
 	},
 	ghost: {
 		backgroundColor: 'transparent',
-		borderColor: 'white'
+		borderColor: 'white',
+		'&.focus': {
+			outline: 'none'
+		}
 	}
 });
 
@@ -54,31 +60,7 @@ const Login = () => {
 		password: Yup.string().required('Password is required').min(8, 'password must be at least 8 characters long')
 	});
 	return Styled.it(
-		`.overlay-container {
-			position: absolute;
-			top: 0;
-			left: 50%;
-			width: 50%;
-			height: 100%;
-			overflow: hidden;
-			transition: transform 0.6s ease-in-out;
-			z-index: 100;
-		}
-		.overlay {
-		background: #FF416C;
-		background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-		background: linear-gradient(to right, #FF4B2B, #FF416C);
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-position: 0 0;
-		color: #FFFFFF;
-		position: relative;
-		left: -100%;
-		height: 100%;
-		width: 200%;
-		transform: translateX(0);
-		transition: transform 0.6s ease-in-out;
-	}
+		`
 	.form-wrapper {
 		background-color: #FFFFFF;
 		display: flex;
@@ -87,13 +69,23 @@ const Login = () => {
 		flex-direction: column;
 		padding: 0 15px;
 		height: 100%;
-		width: 50%;
 		text-align: center;
+		margin-top: 3rem;
+	}
+	.form-size {
+		width: 50%;
+	}
+
+	@media only screen and (max-width: 768px){
+		.form-size{
+			width: 100%;
+			transition: all 0.6s ease-in-out;
+		}
 	}
 	`,
-		<div className="form-wrapper">
-			<div>
-				<h2>hello from the login component </h2>
+		<div className="form-wrapper form-size">
+			<div style={{ width: '100%' }}>
+				<h2>LOGIN</h2>
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchema}
@@ -103,13 +95,14 @@ const Login = () => {
 				>
 					{({ values, handleSubmit }) => (
 						<Form onSubmit={handleSubmit}>
-							<FormikField name="email" label="Email" variant="outlined" showIcon={true} required />
+							<FormikField name="email" label="Email" variant="outlined" showIcon required />
 							<FormikField
 								name="password"
 								type="password"
 								label="Password"
 								variant="outlined"
-								showIcon={true}
+								showIcon
+								rounded
 								required
 							/>
 							<Button type="submit" className={classes.button}>

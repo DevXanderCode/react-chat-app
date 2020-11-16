@@ -18,7 +18,8 @@ interface FormikFieldProps {
 
 const useStyles = makeStyles(theme => ({
   root: {
-		borderRadius: '100px'
+    borderRadius: '30px',
+    height: "60px"
 	}
 }));
 
@@ -54,7 +55,7 @@ const FormikField: React.FC<FormikFieldProps> = ({
         label={label}
         type={type}
         fullWidth
-        className={{root: rounded && classes.root}}
+        className={ `${rounded} && ${classes.root}`}
         helperText={<ErrorMessage name={name} />}
         InputProps={{
           endAdornment: icon
