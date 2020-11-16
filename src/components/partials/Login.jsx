@@ -7,6 +7,7 @@ import FormikField from '../../components/common/FormikField';
 import * as Yup from 'yup';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import LockIcon from '@material-ui/icons/Lock';
 import * as AuthActions from '../../store/actions/authActions';
 
 const useStyles = makeStyles({
@@ -105,6 +106,18 @@ const Login = () => {
 								rounded
 								required
 							/>
+							<Link
+								to="/forgot-password"
+								style={{
+									display: 'block',
+									textDecoration: 'none',
+									color: '#333',
+									fontSize: '14px',
+									margin: '15px 0'
+								}}
+							>
+								<LockIcon style={{ color: '#444', width: '20px' }} /> Forgot your password?
+							</Link>
 							<Button type="submit" className={classes.button}>
 								Login
 							</Button>
