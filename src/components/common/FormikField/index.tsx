@@ -17,12 +17,15 @@ interface FormikFieldProps {
 }
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    borderRadius: '30px',
-    height: "95px"
-  },
   errorMessage: {
-    margin: "5px"
+    "&.MuiFormHelperText-root.Mui-error": {
+      color: "red !important",
+      margin: "0"
+    },
+    "&.MuiFormHelperText-root" : {
+      color: "red !important",
+      margin: "0"
+    }
   }
 }));
 
@@ -58,8 +61,8 @@ const FormikField: React.FC<FormikFieldProps> = ({
         label={label}
         type={type}
         fullWidth
-        className={classes.root}
         helperText={<ErrorMessage name={name} className={classes.errorMessage} />}
+        FormHelperTextProps={{className: classes.errorMessage}}
         InputProps={{
           endAdornment: icon
         }}

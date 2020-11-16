@@ -66,6 +66,18 @@ const Auth = ({ ...props }) => {
 		margin: -20px 0 0px;
 		transition: all 0.6s ease-in-out
 		}
+
+		@keyframes show {
+			0%, 49.99% {
+				opacity: 0;
+				z-index: 1;
+			}
+			
+			50%, 100% {
+				opacity: 1;
+				z-index: 5;
+			}
+		}
 		h1 {
 			font-weight: bold;
 			margin: 0;
@@ -159,9 +171,26 @@ const Auth = ({ ...props }) => {
 			z-index: 5;
 			animation: show 0.6s;
 		}
+		
+		.sign-in-container {
+			left: 0;
+			width: 50%;
+			z-index: 2;
+		}
+
+		.sign-up-container {
+			left: 0;
+			width: 50%;
+			opacity: 0;
+			z-index: 1;
+		}
+
+		
 		.desktop-d-none{
 			display: none
 		}
+
+		// media query for mobile responsiveness
 		@media only screen and (max-width: 768px){
 			.size-overlay{
 				width: 100%;
@@ -221,7 +250,7 @@ const Auth = ({ ...props }) => {
 									<h1>Welcome Back!</h1>
 									<p>To keep connected with us please login with your personal info</p>
 									<Link to="/login" style={{ textDecoration: 'none' }}>
-										<Button className={classes.ghost} id="signUp">
+										<Button className={classes.ghost} id="signin">
 											Login
 										</Button>
 									</Link>
