@@ -48,7 +48,7 @@ const useStyles = makeStyles({
 	}
 });
 
-const Login = () => {
+const Login = ({ socket, ...props }) => {
 	const classes = useStyles();
 
 	const initialValues = {
@@ -92,6 +92,16 @@ const Login = () => {
 					validationSchema={validationSchema}
 					onSubmit={(values, { setSubmitting }) => {
 						console.log('logging login form values: ', values);
+						socket &&
+							socket.send(
+								JSON.stringify({
+									type: 'LOGIN',
+									data: {
+										email: values.email,
+										password: values.password
+									}
+								})
+							);
 					}}
 				>
 					{({ values, handleSubmit }) => (

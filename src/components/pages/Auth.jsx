@@ -62,8 +62,8 @@ const Auth = ({ ...props }) => {
 		align-items: center;
 		flex-direction: column;
 		font-family: 'Montserrat', sans-serif;
-		min-height: 100vh;
-		margin: -30px 0 50px;
+		min-height: 103vh;
+		margin: -20px 0 0px;
 		transition: all 0.6s ease-in-out
 		}
 		h1 {
