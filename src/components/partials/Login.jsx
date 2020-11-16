@@ -1,13 +1,49 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import Styled from 'style-it';
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import FormikField from '../../components/common/FormikField';
 import * as Yup from 'yup';
-import * as AuthActions from '../../store/actions/authActions';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import * as AuthActions from '../../store/actions/authActions';
+
+const useStyles = makeStyles({
+	button: {
+		borderRadius: '20px',
+		border: '1px solid #FF4B2B',
+		backgroundColor: '#FF4B2B',
+		color: '#FFFFFF',
+		fontSize: '12px',
+		fontWeight: 'bold',
+		padding: '12px 45px',
+		letterSpacing: '1px',
+		textTransform: 'uppercase',
+		transition: 'transform 80ms ease-in',
+
+		'&:hover': {
+			color: 'black',
+			backgroundColor: 'rgba(255,75,43, .4)'
+		},
+
+		'&.focus': {
+			outline: 'none'
+		},
+
+		'&:active': {
+			transform: 'scale(0.95)'
+		}
+	},
+	ghost: {
+		backgroundColor: 'transparent',
+		borderColor: 'white'
+	}
+});
 
 const Login = () => {
+	const classes = useStyles();
+
 	const initialValues = {
 		email: '',
 		password: ''
@@ -17,31 +53,72 @@ const Login = () => {
 		email: Yup.string().email().required('Please your email is required in order to login'),
 		password: Yup.string().required('Password is required').min(8, 'password must be at least 8 characters long')
 	});
-	return (
+	return Styled.it(
+		`.overlay-container {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 50%;
+			height: 100%;
+			overflow: hidden;
+			transition: transform 0.6s ease-in-out;
+			z-index: 100;
+		}
+		.overlay {
+		background: #FF416C;
+		background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+		background: linear-gradient(to right, #FF4B2B, #FF416C);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: 0 0;
+		color: #FFFFFF;
+		position: relative;
+		left: -100%;
+		height: 100%;
+		width: 200%;
+		transform: translateX(0);
+		transition: transform 0.6s ease-in-out;
+	}
+	.form-wrapper {
+		background-color: #FFFFFF;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		padding: 0 15px;
+		height: 100%;
+		width: 50%;
+		text-align: center;
+	}
+	`,
 		<div className="form-wrapper">
-			<h2>hello from the login component </h2>
-			<Formik
-				initialValues={initialValues}
-				validationSchema={validationSchema}
-				onSubmit={(values, { setSubmitting }) => {
-					console.log('logging login form values: ', values);
-				}}
-			>
-				{({ values, handleSubmit }) => (
-					<Form onSubmit={handleSubmit}>
-						<FormikField name="email" label="Email" variant="outlined" showIcon={true} required />
-						<FormikField
-							name="password"
-							type="password"
-							label="Password"
-							variant="outlined"
-							showIcon={true}
-							required
-						/>
-						<Button type="submit"> Login</Button>
-					</Form>
-				)}
-			</Formik>
+			<div>
+				<h2>hello from the login component </h2>
+				<Formik
+					initialValues={initialValues}
+					validationSchema={validationSchema}
+					onSubmit={(values, { setSubmitting }) => {
+						console.log('logging login form values: ', values);
+					}}
+				>
+					{({ values, handleSubmit }) => (
+						<Form onSubmit={handleSubmit}>
+							<FormikField name="email" label="Email" variant="outlined" showIcon={true} required />
+							<FormikField
+								name="password"
+								type="password"
+								label="Password"
+								variant="outlined"
+								showIcon={true}
+								required
+							/>
+							<Button type="submit" className={classes.button}>
+								Login
+							</Button>
+						</Form>
+					)}
+				</Formik>
+			</div>
 		</div>
 	);
 };
