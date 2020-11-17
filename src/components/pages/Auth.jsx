@@ -207,7 +207,7 @@ const Auth = ({ ...props }) => {
 			z-index: 100;
 			}
 			.mobile-overlay{
-				background: #FF416C;
+			background: #FF416C;
 			background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
 			background: linear-gradient(to right, #FF4B2B, #FF416C);
 			background-repeat: no-repeat;
@@ -243,14 +243,28 @@ const Auth = ({ ...props }) => {
 			<div className="auth-container">
 				{props.match.path === '/signup' ? (
 					<div>
-						<Signup className="form-container right-panel-active sign-up-container" />
-						<div className=" size-overlay overlay-container">
-							<div className="overlay">
-								<div className="overlay-panel size-overlay overlay-left">
+						<div className="desktop-d-none size-overlay mobile-overlay-container">
+							<div className="mobile-overlay">
+								<div className="mobile-overlay-panel size-overlay">
 									<h1>Welcome Back!</h1>
 									<p>To keep connected with us please login with your personal info</p>
 									<Link to="/login" style={{ textDecoration: 'none' }}>
-										<Button className={classes.ghost} id="signin">
+										<Button className={classes.ghost} id="signUp">
+											Login
+										</Button>
+									</Link>
+								</div>
+							</div>
+						</div>
+						<Signup className="form-container" />
+
+						<div className="mobile-d-none size-overlay overlay-container">
+							<div className="overlay">
+								<div className="overlay-panel size-overlay overlay-right">
+									<h1>Welcome Back!</h1>
+									<p>To keep connected with us please login with your personal info</p>
+									<Link to="/login" style={{ textDecoration: 'none' }}>
+										<Button className={classes.ghost} id="signUp">
 											Login
 										</Button>
 									</Link>

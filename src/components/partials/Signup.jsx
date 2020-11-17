@@ -72,6 +72,17 @@ const Signup = (props) => {
 	});
 	return Styled.it(
 		`
+		@keyframes show {
+			0%, 49.99% {
+				opacity: 0;
+				z-index: 1;
+			}
+			
+			50%, 100% {
+				opacity: 1;
+				z-index: 5;
+			}
+		}
 	.form-wrapper {
 		background-color: #FFFFFF;
 		display: flex;
@@ -85,6 +96,18 @@ const Signup = (props) => {
 	}
 	.form-size {
 		width: 50%;
+	}
+	.sign-up-container {
+		left: 0;
+		width: 50%;
+		opacity: 0;
+		z-index: 1;
+	}
+	.form-container.right-panel-active .sign-up-container {
+		transform: translateX(100%);
+		opacity: 1;
+		z-index: 5;
+		animation: show 0.6s;
 	}
 
 	@media only screen and (max-width: 768px){
