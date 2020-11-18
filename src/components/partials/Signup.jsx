@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 	}
 });
 
-const Signup = (props) => {
+const Signup = ({ socket, ...props }) => {
 	const classes = useStyles();
 
 	const initialValues = {
@@ -120,7 +120,25 @@ const Signup = (props) => {
 		<div className="form-wrapper form-size">
 			<div style={{ width: '100%' }}>
 				<h2>Signup</h2>
-				<Formik initialValues={initialValues} validationSchema={validationSchema}>
+				<Formik
+					initialValues={initialValues}
+					validationSchema={validationSchema}
+					onSubmit={(values, { setSubmitting }) => {
+						console.log('Logging Signup vlaues: ', values);
+						socket &&
+							socket.send(
+								JSON.stringify({
+									type: 'SIGNUP',
+									data: {
+										email: values.email,
+										name: values.fullname,
+										username: values.username,
+										password: values.password
+									}
+								})
+							);
+					}}
+				>
 					{({ values, handleSubmit, ...props }) => (
 						<Form onSubmit={handleSubmit}>
 							<FormikField name="fullname" label="Fullname" variant="outlined" required />
