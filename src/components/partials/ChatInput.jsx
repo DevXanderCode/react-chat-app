@@ -13,6 +13,20 @@ const ChatInput = (props) => {
             bottom: 0;
             width: 100%;
         }
+        .input-view .form-control{
+            border: none;
+            border-radius: 0px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            padding: 10px;
+            height: auto;
+            outline: none;
+        }
+        .input-view input:focus{
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
         `,
 		<div className="input-view">
 			<input
