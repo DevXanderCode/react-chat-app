@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import { SideBar, ThreadView } from '../partials';
 
 const Messenger = (props) => {
 	return (
-		<div>
-			<h4> hello from the ,essanger component</h4>
+		<div className="messenger-container">
+			<SideBar />
+			<ThreadView />
 		</div>
 	);
 };
