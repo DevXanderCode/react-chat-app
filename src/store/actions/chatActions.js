@@ -11,8 +11,8 @@ export const setupSocket = () => {
 			});
 		};
 
-		socket.onmessage((message) => {
-			let data = JSON.parse(message);
+		socket.onmessage = (message) => {
+			let data = JSON.parse(message.data);
 			switch (data.type) {
 				case 'LOGGEDIN':
 					dispatch(AuthActions.loggedIn(data));
@@ -20,6 +20,6 @@ export const setupSocket = () => {
 				default:
 				// do Nothing
 			}
-		});
+		};
 	};
 };

@@ -1,4 +1,4 @@
-export const loggedIn = (data) => (dispatch) => {
+export const loggedIn = (data) => {
 	return (dispatch) => {
 		dispatch({
 			type: 'LOGGEDIN',
