@@ -6,7 +6,14 @@ import Styled from 'style-it';
 const ChatInput = (props) => {
 	const [ content, setContent ] = React.useState('');
 	return Styled.it(
-		``,
+		`
+        .input-view{
+            position: fixed;
+            left: 300px;
+            bottom: 0;
+            width: 100%;
+        }
+        `,
 		<div className="input-view">
 			<input
 				className="form-control"
