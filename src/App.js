@@ -13,8 +13,26 @@ function App({ setupSocket, token, ...props }) {
 		<div className="App">
 			<Router>
 				<Switch>
-					<Route path="/login" component={Auth} />
-					<Route path="/signup" component={Auth} />
+					<Route
+						path="/login"
+						render={(props) => {
+							if (token) {
+								return <Redirect to="/" />;
+							} else {
+								return <Auth />;
+							}
+						}}
+					/>
+					<Route
+						path="/signup"
+						render={(props) => {
+							if (token) {
+								return <Redirect to="/" />;
+							} else {
+								return <Auth />;
+							}
+						}}
+					/>
 
 					<Route
 						exact
