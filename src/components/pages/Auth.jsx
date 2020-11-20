@@ -171,19 +171,6 @@ const Auth = ({ ...props }) => {
 			z-index: 5;
 			animation: show 0.6s;
 		}
-		
-		.sign-in-container {
-			left: 0;
-			width: 50%;
-			z-index: 2;
-		}
-
-		.sign-up-container {
-			left: 0;
-			width: 50%;
-			opacity: 0;
-			z-index: 1;
-		}
 
 		
 		.desktop-d-none{
