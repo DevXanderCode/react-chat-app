@@ -1,11 +1,20 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import Styled from 'style-it';
 
 const ChatInput = (props) => {
-	return (
-		<div>
-			<h6> hello from the chat input component</h6>
+	const [ content, setContent ] = React.useState('');
+	return Styled.it(
+		``,
+		<div className="input-view">
+			<input
+				className="form-control"
+				type="text"
+				placeholder="Write your message"
+				value={content}
+				onChange={(e) => setContent(e.target.value)}
+			/>
 		</div>
 	);
 };
