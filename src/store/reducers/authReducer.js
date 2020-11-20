@@ -11,6 +11,11 @@ const auth = (state = defaultState, action) => {
 				token: action.payload.data.session.id,
 				user: { ...action.payload.data.user }
 			};
+		case 'LOGGEDOUT':
+			return {
+				...state,
+				...defaultState
+			};
 		default:
 			return state;
 	}

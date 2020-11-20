@@ -6,3 +6,12 @@ export const loggedIn = (data) => {
 		});
 	};
 };
+
+export const logout = () => {
+	return (dispatch) => {
+		dispatch({
+			type: 'LOGGEDOUT',
+			payload: null
+		});
+	};
+};
