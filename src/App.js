@@ -23,6 +23,7 @@ function App({ setupSocket, token, logout, ...props }) {
 			<Router>
 				<Switch>
 					<Route
+						exact
 						path="/login"
 						render={(props) => {
 							if (token) {
@@ -33,6 +34,7 @@ function App({ setupSocket, token, logout, ...props }) {
 						}}
 					/>
 					<Route
+						exact
 						path="/signup"
 						render={(props) => {
 							if (token) {
@@ -43,6 +45,7 @@ function App({ setupSocket, token, logout, ...props }) {
 						}}
 					/>
 					<Route
+						exact
 						path="/:threadId"
 						render={(props) => {
 							if (!token) {

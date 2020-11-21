@@ -2,8 +2,20 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import Styled from 'style-it';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const styles = makeStyles({
+	searchButton: {
+		backgroundColor: 'rgba(4,185,95, .8)',
+		borderRadius: '15px',
+		fontSize: '12px'
+	}
+});
 
 const SideBar = (props) => {
+	const classes = styles();
+	const [ searchValue, setSearchValue ] = React.useState('');
 	return Styled.it(
 		`
     .sidebar{
@@ -47,8 +59,21 @@ const SideBar = (props) => {
         color: #aaa;
         padding-top: 10px;
     }
+    .search-container{
+        display: flex;
+        flexWrap: wrap;
+    }
     `,
 		<div className="sidebar">
+			<div className="search-container">
+				<input
+					className="form-control"
+					placeholder="Search..."
+					value={searchValue}
+					onChange={(e) => setSearchValue(e.target.value)}
+				/>
+				<Button className={classes.searchButton}>Search</Button>
+			</div>
 			<ul className="thread-list">
 				<label>Messages</label>
 				<li>
