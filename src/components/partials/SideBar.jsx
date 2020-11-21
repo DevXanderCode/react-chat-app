@@ -13,9 +13,13 @@ const styles = makeStyles({
 	}
 });
 
-const SideBar = (props) => {
+const SideBar = ({ socket, ...props }) => {
 	const classes = styles();
 	const [ searchValue, setSearchValue ] = React.useState('');
+
+	const search = () => {
+		socket.send(JSON.stringify({ type: 'SEARCH', data: searchValue }));
+	};
 	return Styled.it(
 		`
     .sidebar{
@@ -72,7 +76,9 @@ const SideBar = (props) => {
 					value={searchValue}
 					onChange={(e) => setSearchValue(e.target.value)}
 				/>
-				<Button className={classes.searchButton}>Search</Button>
+				<Button className={classes.searchButton} onClick={(e) => search()}>
+					Search
+				</Button>
 			</div>
 			<ul className="thread-list">
 				<label>Messages</label>
