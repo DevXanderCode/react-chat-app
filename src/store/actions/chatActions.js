@@ -16,7 +16,13 @@ export const setupSocket = () => {
 			switch (data.type) {
 				case 'LOGGEDIN':
 					dispatch(AuthActions.loggedIn(data));
-
+					break;
+				case 'GOT_USERS':
+					dispatch({
+						type: 'GOT_USERS',
+						payload: data.data.users
+					});
+					break;
 				default:
 				// do Nothing
 			}
