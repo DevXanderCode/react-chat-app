@@ -13,12 +13,21 @@ const styles = makeStyles({
 	}
 });
 
-const SideBar = ({ socket, users, ...props }) => {
+const SideBar = ({ socket, users, user, ...props }) => {
 	const classes = styles();
 	const [ searchValue, setSearchValue ] = React.useState('');
 
 	const search = () => {
 		socket.send(JSON.stringify({ type: 'SEARCH', data: searchValue }));
+	};
+
+	const findOrCreateThread = (id) => {
+		socket.send(
+			JSON.stringify({
+				type: 'FIND_THREAD',
+				data: [ user.id, id ]
+			})
+		);
 	};
 	return Styled.it(
 		`
@@ -80,21 +89,26 @@ const SideBar = ({ socket, users, ...props }) => {
 					Search
 				</Button>
 			</div>
-			{users.length > 0 ? (
-				users.length > 0 && (
-					<ul className="thread-list">
-						<label> Results</label>
-						{users.map((user, idx) => (
-							<li key={idx}>
-								<Link to="">
-									<i className="zmdi zmdi-account-circle" />
-									<h5>{user.name}</h5>
-									<p>{user.email}</p>
-								</Link>
-							</li>
-						))}
-					</ul>
-				)
+			{searchValue ? users.length > 0 ? (
+				<ul className="thread-list">
+					<label> Results</label>
+					{users.filter((u) => u.id !== user.id).map((user, idx) => (
+						<li key={idx}>
+							<a
+								onClick={(e) => {
+									e.preventDefault();
+									findOrCreateThread(user.id);
+								}}
+							>
+								<i className="zmdi zmdi-account-circle" />
+								<h5>{user.name}</h5>
+								<p>{user.email}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			) : (
+				<h4>No result Found</h4>
 			) : (
 				<ul className="thread-list">
 					<label>Messages</label>
