@@ -13,7 +13,7 @@ const styles = makeStyles({
 	}
 });
 
-const SideBar = ({ socket, users, user, ...props }) => {
+const SideBar = ({ socket, users, user, threads, ...props }) => {
 	const classes = styles();
 	const [ searchValue, setSearchValue ] = React.useState('');
 
@@ -108,29 +108,29 @@ const SideBar = ({ socket, users, user, ...props }) => {
 					))}
 				</ul>
 			) : (
-				<h4>No result Found</h4>
+				<ul className="thread-list">
+					<label> Results</label>
+				</ul>
+			) : threads.length > 0 ? (
+				<ul className="thread-list">
+					<label>Messages</label>
+					{threads.map((thread, threadIndex) => (
+						<li key={threadIndex}>
+							<Link to="/thread">
+								<i className="zmdi zmdi-account-circle" />
+								<h5>{thread.id}</h5>
+								<p>This is the last message</p>
+							</Link>
+						</li>
+					))}
+				</ul>
 			) : (
 				<ul className="thread-list">
 					<label>Messages</label>
 					<li>
 						<Link to="/thread">
-							<i className="zmdi zmdi-account-circle" />
-							<h5>Name</h5>
-							<p>This is the last message</p>
-						</Link>
-					</li>
-					<li>
-						<Link to="/thread">
-							<i className="zmdi zmdi-account-circle" />
-							<h5>Name</h5>
-							<p>This is the last message</p>
-						</Link>
-					</li>
-					<li>
-						<Link to="/thread">
-							<i className="zmdi zmdi-account-circle" />
-							<h5>Name</h5>
-							<p>This is the last message</p>
+							{/* <i className="zmdi zmdi-account-circle" /> */}
+							<h4>No New Message</h4>
 						</Link>
 					</li>
 				</ul>
