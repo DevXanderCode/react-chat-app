@@ -3,7 +3,19 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import Styled from 'style-it';
 
-const ThreadView = (props) => {
+const ThreadView = ({ socket, ...props }) => {
+	React.useEffect(
+		() => {
+			socket.send(
+				JSON.stringify({
+					type: 'THREAD_lOAD',
+					data: props.match.params.threadId
+				})
+			);
+		},
+		[ props.match.params.threadId ]
+	);
+
 	return Styled.it(
 		`
     .main-view{
