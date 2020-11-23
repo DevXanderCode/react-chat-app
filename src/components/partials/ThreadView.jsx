@@ -3,15 +3,19 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import Styled from 'style-it';
 
-const ThreadView = ({ socket, ...props }) => {
+const ThreadView = ({ socket, threads, ...props }) => {
 	React.useEffect(
 		() => {
-			socket.send(
-				JSON.stringify({
-					type: 'THREAD_lOAD',
-					data: props.match.params.threadId
-				})
-			);
+			let currentThread = threads.filter((t) => t.id === props.match.params.threadId)[0];
+			if (currentThread && socket.readyState) {
+				let skip = currentThread.messages || 0;
+				socket.send(
+					JSON.stringify({
+						type: 'THREAD_LOAD',
+						data: { threadId: props.match.params.threadId, skip }
+					})
+				);
+			}
 		},
 		[ props.match.params.threadId ]
 	);

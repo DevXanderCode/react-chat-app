@@ -10,7 +10,7 @@ import * as AuthActions from './store/actions/authActions';
 
 function App({ setupSocket, token, logout, ...props }) {
 	React.useEffect(() => {
-		setupSocket();
+		setupSocket(token);
 	}, []);
 	return Styled.it(
 		`
@@ -79,8 +79,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	setupSocket: () => {
-		dispatch(chatActions.setupSocket());
+	setupSocket: (token) => {
+		dispatch(chatActions.setupSocket(token));
 	},
 	logout: () => {
 		dispatch(AuthActions.logout());
