@@ -21,7 +21,10 @@ const chat = (state = defaultState, action) => {
 		case 'ADD_THREAD':
 			return {
 				...state,
-				threads: state.threads.concat(action.payload)
+				threads:
+					state.threads.filter((t) => t.id === action.payload.id).length === 0
+						? state.threads.concat(action.payload)
+						: state.threads
 			};
 		default:
 			return state;

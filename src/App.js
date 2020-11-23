@@ -8,9 +8,9 @@ import * as chatActions from './store/actions/chatActions';
 import Auth from './components/pages/Auth';
 import * as AuthActions from './store/actions/authActions';
 
-function App({ setupSocket, token, logout, ...props }) {
+function App({ setupSocket, token, user, logout, ...props }) {
 	React.useEffect(() => {
-		setupSocket(token);
+		setupSocket(token, user.id);
 	}, []);
 	return Styled.it(
 		`
@@ -79,8 +79,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	setupSocket: (token) => {
-		dispatch(chatActions.setupSocket(token));
+	setupSocket: (token, userId) => {
+		dispatch(chatActions.setupSocket(token, userId));
 	},
 	logout: () => {
 		dispatch(AuthActions.logout());

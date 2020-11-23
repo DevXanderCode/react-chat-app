@@ -1,6 +1,6 @@
 import * as AuthActions from './authActions';
 
-export const setupSocket = (token) => {
+export const setupSocket = (token, userId) => {
 	return (dispatch) => {
 		const socket = new WebSocket('ws://localhost:8080');
 
@@ -10,9 +10,14 @@ export const setupSocket = (token) => {
 				socket.send(
 					JSON.stringify({
 						type: 'CONNECT_WITH_TOKEN',
-						data: token
+						data: { token, userId }
 					})
 				);
+
+				dispatch({
+					type: 'SETUP_SOCKET',
+					payload: socket
+				});
 			} else {
 				dispatch({
 					type: 'SETUP_SOCKET',
