@@ -4,12 +4,14 @@ import { withRouter, Link } from 'react-router-dom';
 import Styled from 'style-it';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
 
 const styles = makeStyles({
 	searchButton: {
-		backgroundColor: 'rgba(4,185,95, .8)',
-		borderRadius: '15px',
-		fontSize: '12px'
+		borderRadius: '100px',
+		'&:focus': {
+			outline: 'none'
+		}
 	}
 });
 
@@ -74,19 +76,31 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
     }
     .search-container{
         display: flex;
-        flexWrap: wrap;
-    }
+		flexWrap: wrap;
+		border: 1px solid #eee;
+		border-radius: 50px;
+		margin: 1rem 1rem 0;
+		padding: .15rem 0 .15rem;
+	}
+	input.form-control{
+		margin: auto 0;
+		height: 1rem;
+	}
+	input.form-control:focus{
+		box-shadow: none
+	}
     `,
 		<div className="sidebar">
 			<div className="search-container">
 				<input
 					className="form-control"
+					style={{ border: 'none' }}
 					placeholder="Search..."
 					value={searchValue}
 					onChange={(e) => setSearchValue(e.target.value)}
 				/>
 				<Button className={classes.searchButton} onClick={(e) => search()}>
-					Search
+					<SearchIcon />
 				</Button>
 			</div>
 			{searchValue ? users.length > 0 ? (

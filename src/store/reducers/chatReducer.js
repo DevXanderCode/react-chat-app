@@ -19,6 +19,7 @@ const chat = (state = defaultState, action) => {
 				users: [ ...action.payload ]
 			};
 		case 'ADD_THREAD':
+			console.log('logging action .payload of the add thread', action.payload);
 			return {
 				...state,
 				threads:
