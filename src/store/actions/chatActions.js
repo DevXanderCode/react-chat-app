@@ -59,6 +59,15 @@ export const setupSocket = (token, userId) => {
 						}
 					});
 					break;
+				case 'ADD_MESSAGE_TO_THREAD':
+					dispatch({
+						type: 'ADD_SINGLE_MESSAGE',
+						payload: {
+							threadId: data.threadId,
+							message: data.message
+						}
+					});
+					break;
 				default:
 				// do Nothing
 			}
