@@ -32,6 +32,20 @@ const chat = (state = defaultState, action) => {
 				...state,
 				threads: action.payload
 			};
+		case 'ADD_SINGLE_MESSAGE':
+			return {
+				...state,
+				threads: state.threads.map((thread) => {
+					if (thread.id === action.payload.threadId) {
+						return {
+							...thread,
+							Messages: state.Messages.concat(action.payload.message)
+						};
+					} else {
+						return thread;
+					}
+				})
+			};
 		case 'ADD_MESSAGES_TO_THREAD':
 			return {
 				...state,
