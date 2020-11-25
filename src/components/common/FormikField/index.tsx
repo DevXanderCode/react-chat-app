@@ -8,7 +8,7 @@ import "./FormikField.css";
 
 interface FormikFieldProps {
   name: string;
-  label: string;
+  label?: string;
   required?: boolean;
   type?: string;
   variant?: string;
