@@ -34,7 +34,7 @@ const ThreadView = ({ socket, threads, ...props }) => {
 		overflow-y: auto;
     }
     `,
-		<div className="main-view">
+		<div className="main-view" id="main-view">
 			{/* <h5>hello from the ThreadView component</h5> */}
 			{threads.filter((thread) => thread.id === props.match.params.threadId).map((thread, idx) => (
 				<div key={idx} className="messenger-container">

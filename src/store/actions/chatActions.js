@@ -67,6 +67,10 @@ export const setupSocket = (token, userId) => {
 							message: data.message
 						}
 					});
+					// using jquery to scroll
+					// $(.main-view).scrollTop = $(".main-view").scrollHeight
+					// using core js
+					document.getElementById('main-view').scrollTop = document.getElementById('main-view').scrollHeight;
 					break;
 				default:
 				// do Nothing
