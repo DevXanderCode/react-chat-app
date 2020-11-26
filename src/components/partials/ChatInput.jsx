@@ -1,18 +1,27 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { Formik, Form } from 'formik';
-import FormikField from '../common/FormikField';
 import Styled from 'style-it';
 
-const ChatInput = ({ user, ...props }) => {
+const ChatInput = ({ user, socket, ...props }) => {
 	const [ content, setContent ] = React.useState('');
 
 	const sendMessage = () => {
 		const msg = {
 			threadId: props.match.params.threadId,
-			userId: user.id
+			userId: user.id,
+			content,
+			date: new Date()
 		};
+		socket.send(
+			JSON.stringify({
+				type: 'ADD_MESSAGE',
+				message: msg,
+				threadId: msg.threadId
+			})
+		);
+
+		setContent('');
 	};
 
 	return Styled.it(
@@ -21,41 +30,56 @@ const ChatInput = ({ user, ...props }) => {
             position: fixed;
             left: 300px;
             bottom: 0;
-            width: 75%;
+			width: calc(100% - 300px);
+			display: flex;
+			box-shadow: 0px -1px 5px rgba(0,0,0,0.2)
         }
-        .input-view .form-control{
-            border: none;
+        .input-view .input-group .form-control{
+            border: none !important;
             border-radius: 0px;
             border-top: 1px solid #eee;
             font-size: 14px;
             padding: 10px;
             height: auto;
-            outline: none;
-        }
+			outline: none;
+			background: transparent !important;
+		}
+		.input-group{
+			background-color: #fff !important;
+		}
         .input-view input:focus{
             outline: none;
             border: none;
             box-shadow: none;
         }
         `,
-		// <form className="input-view" onSubmit={e => {
-		//     sendMessage()
-		// }}>
-		// 	<input
-		// 		className="form-control"
-		// 		type="text"
-		// 		placeholder="Write your message"
-		// 		value={content}
-		// 		onChange={(e) => setContent(e.target.value)}
-		// 	/>
-		// </form>
-		<div className="input-view">
-			<Formik>
-				<Form>
-					<FormikField name="message" style={{ margin: 0 }} variant="outlined" />
-				</Form>
-			</Formik>
-		</div>
+		<form
+			className="input-view"
+			onSubmit={(e) => {
+				e.preventDefault();
+				sendMessage();
+			}}
+		>
+			<div className="input-group">
+				<input
+					className="form-control"
+					type="text"
+					placeholder="Write your message"
+					value={content}
+					onChange={(e) => setContent(e.target.value)}
+				/>
+				<button className="btn btn-send input-group-append" style={{ margin: 'auto' }}>
+					<i className="zmdi zmdi-mail-send" />
+				</button>
+			</div>
+		</form>
+		// <div className="input-view">
+		// 	<Formik>
+		// 		<Form>
+		// 			<FormikField name="message" style={{ margin: 0 }} variant="outlined" />
+		// 		</Form>
+		// 	</Formik>
+		// </div>
 	);
 };
 
