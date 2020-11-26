@@ -3,7 +3,8 @@ const defaultState = {
 	message: '',
 	threads: [],
 	multipleThread: '',
-	users: []
+	users: [],
+	Messages: []
 };
 
 const chat = (state = defaultState, action) => {
@@ -53,7 +54,7 @@ const chat = (state = defaultState, action) => {
 					if (t.id === action.payload.threadId) {
 						return {
 							...t,
-							messages: action.payload.concat(t.messages)
+							Messages: action.payload.concat(t.messages)
 						};
 					} else {
 						return t;
