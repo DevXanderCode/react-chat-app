@@ -28,7 +28,9 @@ const ThreadView = ({ socket, threads, ...props }) => {
         left: 300px;
         background-color: #fafafa;
         height: 100vh;
-        width: 100%;
+		width: calc(100% - 300px);
+		max-height: calc(100% - 75px);
+		overflow: auto;
     }
     `,
 		<div className="main-view">

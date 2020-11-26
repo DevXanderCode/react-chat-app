@@ -34,13 +34,14 @@ const chat = (state = defaultState, action) => {
 				threads: action.payload
 			};
 		case 'ADD_SINGLE_MESSAGE':
+			console.log('logging ADD_SINGLE_MESSAGE', action.payload);
 			return {
 				...state,
 				threads: state.threads.map((thread) => {
 					if (thread.id === action.payload.threadId) {
 						return {
 							...thread,
-							Messages: state.Messages.concat(action.payload.message)
+							Messages: thread.Messages.concat(action.payload.message)
 						};
 					} else {
 						return thread;
@@ -48,14 +49,16 @@ const chat = (state = defaultState, action) => {
 				})
 			};
 		case 'ADD_MESSAGES_TO_THREAD':
-			console.log('logging', action.payload, action);
+			console.log('logging ADD_MESSAGES_TO_THREAD', action.payload, action);
 			return {
 				...state,
 				threads: state.threads.map((t) => {
 					if (t.id === action.payload.threadId) {
+						console.log('logging current thread', t);
 						return {
 							...t,
 							Messages: action.payload.messages.concat(t.messages)
+							// Messages: t.Messages.concat(action.payload.messages)
 						};
 					} else {
 						return t;
