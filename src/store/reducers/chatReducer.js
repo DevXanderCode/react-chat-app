@@ -48,13 +48,14 @@ const chat = (state = defaultState, action) => {
 				})
 			};
 		case 'ADD_MESSAGES_TO_THREAD':
+			console.log('logging', action.payload, action);
 			return {
 				...state,
 				threads: state.threads.map((t) => {
 					if (t.id === action.payload.threadId) {
 						return {
 							...t,
-							Messages: action.payload.concat(t.messages)
+							Messages: action.payload.messages.concat(t.messages)
 						};
 					} else {
 						return t;

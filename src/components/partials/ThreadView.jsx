@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import Styled from 'style-it';
+import Message from './Message';
 
 const ThreadView = ({ socket, threads, ...props }) => {
 	React.useEffect(
@@ -31,7 +32,12 @@ const ThreadView = ({ socket, threads, ...props }) => {
     }
     `,
 		<div className="main-view">
-			<h5>hello from the ThreadView component</h5>
+			{/* <h5>hello from the ThreadView component</h5> */}
+			{threads.filter((thread) => thread.id === props.match.params.threadId).map((thread, idx) => (
+				<div key={idx} className="messenger-container">
+					{thread.Messages.map((msg, mId) => <Message msg={msg} key={mId} />)}
+				</div>
+			))}
 		</div>
 	);
 };
