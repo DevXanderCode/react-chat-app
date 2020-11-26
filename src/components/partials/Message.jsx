@@ -12,6 +12,35 @@ const Message = ({ msg, user, ...props }) => {
         .msg-right{
             text-align: right;
         }
+        .message-item .chat-bubble{
+            max-width: 600px;
+            display: inline-block;
+            padding: 10px 15px;
+            padding-top: 4px;
+            border-radius: 5px;
+            margin: 0px 5px;
+            background-color: #ddd
+        }
+        .message-item .zmdi.zmdi-account-circle {
+            float: left;
+            font-size: 32px;
+            margin-top: 5px;
+            margin-left: 0;
+            margin-right: 5px;
+            color: #ddd
+        }
+        .message-item.msg-right .zmdi.zmdi-account-circle{
+            float:right;
+        }
+        .message-item.msg-right .zmdi.zmdi-account-circle{
+            margin-left: 5px;
+            margin-right: 0;
+        }
+        .message-item.msg-right .chat-bubble{
+            background-color: #1d8ff1;
+            color: #fff
+        }
+      
     `,
 		<div>
 			{msg ? (

@@ -30,7 +30,8 @@ const ThreadView = ({ socket, threads, ...props }) => {
         height: 100vh;
 		width: calc(100% - 300px);
 		max-height: calc(100% - 75px);
-		overflow: auto;
+		overflow: hidden;
+		overflow-y: auto;
     }
     `,
 		<div className="main-view">
