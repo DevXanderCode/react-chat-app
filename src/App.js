@@ -8,6 +8,8 @@ import * as chatActions from './store/actions/chatActions';
 import Auth from './components/pages/Auth';
 import * as AuthActions from './store/actions/authActions';
 
+require('bootstrap');
+
 function App({ setupSocket, token, user, logout, ...props }) {
 	React.useEffect(() => {
 		setupSocket(token, user.id);

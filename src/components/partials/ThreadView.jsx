@@ -26,7 +26,7 @@ const ThreadView = ({ socket, threads, ...props }) => {
     .main-view{
         position: fixed;
         left: 300px;
-        background-color: #fafafa;
+        background-color: #F5F5F5;
         height: 100vh;
 		width: calc(100% - 300px);
 		max-height: calc(100% - 75px);
