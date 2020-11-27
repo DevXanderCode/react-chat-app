@@ -5,6 +5,7 @@ import Styled from 'style-it';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import StringController from '../../controllers/StringContoller';
 
 const styles = makeStyles({
 	searchButton: {
@@ -50,27 +51,42 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 		padding: 0;
 		overflow: hidden;
 		overflow-y: auto;
+		padding: 15px 0;
+		display: flex;
+		flex-direction: column; 
     }
     ul.thread-list li a .zmdi {
         float: left;
-        font-size: 48px;
+        font-size: 70px;
         padding: 5px 15px;
         color: #ccc;
     }
     ul.thread-list li a{
         text-decoration: none;
-        color: #444;
-    }
-    ul.thread-list li a h5 {
+		color: #444;
+		display: flex;
+		// flex-direction: column;
+	}
+	ul.thread-list li a div.detail {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		justify-items: center;
+		align-content: center;
+	}
+    ul.thread-list li a div.detail h5 {
         font-size: 14px;
-        padding: 10px;
+        padding: 0px;
         font-weight: 700;
         padding-bottom: 0;
-        margin-bottom: 0;
+		margin-bottom: 0;
+		width: 100%;
     }
-    ul.thread-list li a p {
+    ul.thread-list li a div.detail p {
         font-size: 14px;
-        color: #999;
+		color: #999;
+		width: 100%;
     }
     ul.thread-list label{
         padding-left: 20px;
@@ -126,8 +142,10 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 								}}
 							>
 								<i className="zmdi zmdi-account-circle" />
-								<h5>{user.name}</h5>
-								<p>{user.email}</p>
+								<div className="detail">
+									<h5>{StringController.truncateString(user.name, 24)}</h5>
+									<p>{user.email}</p>
+								</div>
 							</a>
 						</li>
 					))}
@@ -143,8 +161,10 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 						<li key={threadIndex}>
 							<Link to={`/${thread.id}`}>
 								<i className="zmdi zmdi-account-circle" />
-								<h5>{thread.id}</h5>
-								<p>This is the last message</p>
+								<div className="detail">
+									<h5>{thread.id}</h5>
+									<p>This is the last message</p>
+								</div>
 							</Link>
 						</li>
 					))}

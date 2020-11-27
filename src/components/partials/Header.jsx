@@ -22,12 +22,14 @@ const Header = ({ logout, ...props }) => {
     .header-container{
         width: calc(100% - 300px);
         margin-left: 300px;
-        display: flex; 
-    }
+        display: flex;
+        padding: 20px 10px;
+        box-shadow: 0px 20px 5px rgba(0,0,0,0.2); 
+    }   
 
     `,
 		<div className="header-container">
-			<Tooltip title="LogOut" arrow>
+			<Tooltip title="LogOut" arrow interactive>
 				<IconButton
 					className={classes.logoutBtn}
 					onClick={(e) => {
