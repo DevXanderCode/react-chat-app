@@ -32,13 +32,18 @@ const ThreadView = ({ socket, threads, ...props }) => {
 		max-height: calc(100% - 75px);
 		overflow: hidden;
 		overflow-y: auto;
+		padding-bottom: 10px;
     }
     `,
 		<div className="main-view" id="main-view">
 			{/* <h5>hello from the ThreadView component</h5> */}
 			{threads.filter((thread) => thread.id === props.match.params.threadId).map((thread, idx) => (
 				<div key={idx} className="messenger-container">
-					{thread.Messages.map((msg, mId) => <Message msg={msg} key={mId} />)}
+					{thread.Messages && thread.Messages.length > 0 ? (
+						thread.Messages.map((msg, mId) => <Message value={msg} key={mId} />)
+					) : (
+						<p> No Messages</p>
+					)}
 				</div>
 			))}
 		</div>

@@ -41,11 +41,15 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
         height: 100vh;
         position: fixed;
         top: 0;
-        border-right: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		overflow: hidden;
+		overflow-y:auto;
     }
     ul.thread-list{
         list-style-type: none;
-        padding: 0;
+		padding: 0;
+		overflow: hidden;
+		overflow-y: auto;
     }
     ul.thread-list li a .zmdi {
         float: left;
@@ -91,18 +95,25 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 	}
     `,
 		<div className="sidebar">
-			<div className="search-container">
-				<input
-					className="form-control"
-					style={{ border: 'none' }}
-					placeholder="Search..."
-					value={searchValue}
-					onChange={(e) => setSearchValue(e.target.value)}
-				/>
-				<Button className={classes.searchButton} onClick={(e) => search()}>
-					<SearchIcon />
-				</Button>
-			</div>
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					search();
+				}}
+			>
+				<div className="search-container">
+					<input
+						className="form-control"
+						style={{ border: 'none' }}
+						placeholder="Search..."
+						value={searchValue}
+						onChange={(e) => setSearchValue(e.target.value)}
+					/>
+					<Button className={classes.searchButton} type="submit" onClick={(e) => search()}>
+						<SearchIcon />
+					</Button>
+				</div>
+			</form>
 			{searchValue ? users.length > 0 ? (
 				<ul className="thread-list">
 					<label> Results</label>
