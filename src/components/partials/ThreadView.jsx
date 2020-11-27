@@ -40,7 +40,13 @@ const ThreadView = ({ socket, threads, ...props }) => {
 			{threads.filter((thread) => thread.id === props.match.params.threadId).map((thread, idx) => (
 				<div key={idx} className="messenger-container">
 					{thread.Messages && thread.Messages.length > 0 ? (
-						thread.Messages.map((msg, mId) => <Message value={msg} key={mId} />)
+						thread.Messages.map((msg, mId) => (
+							<Message
+								value={msg}
+								key={mId}
+								profile={thread.profiles.filter((p) => p.id === msg.userId)[0]}
+							/>
+						))
 					) : (
 						<p> No Messages</p>
 					)}

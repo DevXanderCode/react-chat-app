@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Style from 'style-it';
 
-const Message = ({ value, msg, user, ...props }) => {
+const Message = ({ value, msg, user, profile, ...props }) => {
 	// console.log('message', msg);
 	return Style.it(
 		`
@@ -47,7 +47,9 @@ const Message = ({ value, msg, user, ...props }) => {
 			{value && value.content ? (
 				<div className={`message-item ${value.userId === user.id ? 'msg-right' : 'msg-left'}`}>
 					<i className="zmdi zmdi-account-circle" />
-					<div className="chat-bubble">{value.content}</div>
+					<div className="chat-bubble" title={profile.name}>
+						{value.content}
+					</div>
 				</div>
 			) : (
 				<h5>no message</h5>

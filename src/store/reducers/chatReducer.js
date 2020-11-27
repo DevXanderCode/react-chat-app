@@ -20,7 +20,7 @@ const chat = (state = defaultState, action) => {
 				users: [ ...action.payload ]
 			};
 		case 'ADD_THREAD':
-			console.log('logging action .payload of the add thread', action.payload);
+			// console.log('logging action .payload of the add thread', action.payload);
 			return {
 				...state,
 				threads:
@@ -34,7 +34,7 @@ const chat = (state = defaultState, action) => {
 				threads: action.payload
 			};
 		case 'ADD_SINGLE_MESSAGE':
-			console.log('logging ADD_SINGLE_MESSAGE', action.payload);
+			// console.log('logging ADD_SINGLE_MESSAGE', action.payload);
 			return {
 				...state,
 				threads: state.threads.map((thread) => {
@@ -49,7 +49,7 @@ const chat = (state = defaultState, action) => {
 				})
 			};
 		case 'ADD_MESSAGES_TO_THREAD':
-			console.log('logging ADD_MESSAGES_TO_THREAD', action.payload, action);
+			// console.log('logging ADD_MESSAGES_TO_THREAD', action.payload, action);
 			return {
 				...state,
 				threads: state.threads.map((t) => {
