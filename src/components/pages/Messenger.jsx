@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { SideBar, ThreadView, ChatInput } from '../partials';
+import { SideBar, ThreadView, ChatInput, Header } from '../partials';
 
 const Messenger = (props) => {
 	return (
 		<div className="messenger-container">
+			<Header />
 			<SideBar />
 			<ThreadView />
 			<ChatInput />

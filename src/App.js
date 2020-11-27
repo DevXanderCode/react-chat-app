@@ -7,6 +7,8 @@ import Messenger from './components/pages/Messenger';
 import * as chatActions from './store/actions/chatActions';
 import Auth from './components/pages/Auth';
 import * as AuthActions from './store/actions/authActions';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { IconButton } from '@material-ui/core';
 
 require('bootstrap');
 
@@ -21,7 +23,9 @@ function App({ setupSocket, token, user, logout, ...props }) {
 	}
 	`,
 		<div className="app">
-			<button onClick={(e) => logout()}>Log Out</button>
+			<IconButton style={{ positon: 'relative', left: '100%' }} onClick={(e) => logout()}>
+				<ExitToAppIcon />
+			</IconButton>
 			<Router>
 				<Switch>
 					<Route
