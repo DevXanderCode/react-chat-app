@@ -23,9 +23,6 @@ function App({ setupSocket, token, user, logout, ...props }) {
 	}
 	`,
 		<div className="app">
-			<IconButton style={{ positon: 'relative', left: '100%' }} onClick={(e) => logout()}>
-				<ExitToAppIcon />
-			</IconButton>
 			<Router>
 				<Switch>
 					<Route
