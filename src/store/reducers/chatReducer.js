@@ -57,8 +57,10 @@ const chat = (state = defaultState, action) => {
 						console.log('logging current thread', t);
 						return {
 							...t,
-							Messages: action.payload.messages.length > 0 && action.payload.messages.concat(t.messages)
-							// Messages: t.Messages.concat(action.payload.messages)
+							Messages: action.payload.messages.content
+								? action.payload.messages.concat(t.Messages)
+								: t.Messages
+							// Messages: action.payload.messages.content && t.Messages.concat(action.payload.messages)
 						};
 					} else {
 						return t;

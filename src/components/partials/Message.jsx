@@ -43,8 +43,8 @@ const Message = ({ value, msg, user, ...props }) => {
       
     `,
 		<div>
-			{/* {console.log('logging message value', value)} */}
-			{value ? (
+			{/* {console.log('logging message value', value.length)} */}
+			{value && value.content ? (
 				<div className={`message-item ${value.userId === user.id ? 'msg-right' : 'msg-left'}`}>
 					<i className="zmdi zmdi-account-circle" />
 					<div className="chat-bubble">{value.content}</div>

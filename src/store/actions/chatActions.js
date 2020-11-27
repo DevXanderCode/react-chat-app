@@ -51,6 +51,7 @@ export const setupSocket = (token, userId) => {
 					});
 					break;
 				case 'GOT_MESSAGES':
+					console.log('logging data of GotMessages:', data);
 					dispatch({
 						type: 'ADD_MESSAGES_TO_THREAD',
 						payload: {
