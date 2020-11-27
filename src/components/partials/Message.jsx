@@ -22,9 +22,9 @@ const Message = ({ value, msg, user, profile, ...props }) => {
         .message-item .chat-bubble{
             display: flex;
             max-width: fit-content;
-            padding: 10px 15px;
-            padding-top: 4px;
-            border-radius: 5px;
+            padding: 13px 15px;
+            // padding-top: 4px;
+            border-radius: 20px 20px 20px 0px;
             margin: 0px 5px;
             background-color: #6BB36B;
             color: white;
@@ -48,6 +48,7 @@ const Message = ({ value, msg, user, profile, ...props }) => {
         .message-item.msg-right .chat-bubble{
             background-color: #E1F0E1;
             color: black;
+            border-radius: 20px 20px 0px 20px;
         }
       .time-stamp{
           font-size: .8rem;
@@ -57,12 +58,15 @@ const Message = ({ value, msg, user, profile, ...props }) => {
           tex-align: left;
           margin-top: auto;
           margin-bottom: auto;
+          padding-left: 1.5%;
       }
       .msg-right .time-stamp{
-         color: #E1F0E1;
+         color: #11F011;
          float:right;
         text-align: right;
         margin-left: auto;
+        padding-right: 1.5%;
+        padding-left: 0;
       }
       .msg-right .time-stamp-none{
           display: none;
