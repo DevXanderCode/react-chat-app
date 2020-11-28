@@ -94,16 +94,21 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
         font-weight: 700;
         padding-bottom: 0;
 		margin-bottom: 0;
+		color: #black
 		// width: 100%;
 	}
+	.thread-active h5, .thread-active div, .thread-active p{
+		color: #D5E5D5 !important;
+	}
 	ul.thread-list li a div.detail .more-detail div{
-		// justify-content: flex-end;
+		color: #black;
 	}
     ul.thread-list li a div.detail p {
         font-size: 14px;
 		color: #404040;
 		width: 100%;
 		margi-bottom: 0;
+		color: #black;
     }
     ul.thread-list label{
         padding-left: 20px;
@@ -181,16 +186,12 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 							<NavLink
 								to={`/${thread.id}`}
 								activeClassName="thread-active"
-								activeStyle={{ backgroundColor: '#6BB36B' }}
+								activeStyle={{ backgroundColor: '#6BB36B', color: 'black' }}
 							>
 								<i className="zmdi zmdi-account-circle" />
 								<div className="detail">
 									<div className="more-detail">
 										<h5>{StringController.truncateString(thread.id, 15)}</h5>
-										{/* {console.log(
-											'logging the last message',
-											thread.Messages[thread.Messages.length - 1].date
-										)} */}
 										<div>
 											{thread.Messages.length > 0 ? (
 												moment(thread.Messages[thread.Messages.length - 1].date).format('HH:mm')
