@@ -198,14 +198,14 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 											thread.profiles.length <= 2 ? (
 												StringController.truncateString(
 													thread.profiles.filter((profile) => profile.id !== user.id)[0].name,
-													15
+													20
 												)
 											) : (
-												thread.id
+												StringController.truncateString(thread.id, 20)
 											)}
 										</h5>
 										<div>
-											{thread.Messages.length > 0 ? (
+											{thread.Messages && thread.Messages.length > 0 ? (
 												moment(thread.Messages[thread.Messages.length - 1].date).format('HH:mm')
 											) : (
 												moment(thread.lastUpdated).format('HH:mm')
@@ -213,7 +213,7 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 										</div>
 									</div>
 									<p style={{ marginBottom: '0' }}>
-										{thread.Messages.length > 0 ? (
+										{thread.Messages && thread.Messages.length > 0 ? (
 											StringController.truncateString(
 												thread.Messages[thread.Messages.length - 1].content,
 												34
