@@ -11,7 +11,8 @@ import * as AuthActions from '../../store/actions/authActions';
 const useStyles = makeStyles((theme) => ({
 	logoutBtn: {
 		position: 'relative',
-		left: 'calc(100% - 250px)'
+		left: 'calc(100% - 250px)',
+		margin: '25px 0px'
 	}
 }));
 
@@ -55,9 +56,10 @@ const Header = ({ threads, users, user, logout, ...props }) => {
 			<div className="profile-container">
 				<i className="zmdi zmdi-account-circle" />
 				{threads &&
+					threads.length > 0 &&
 					threadId &&
 					threads
-						.filter((thread) => thread.id === threadId && thread.profiles)[0]
+						.filter((thread) => thread && thread.profiles && thread.id === threadId)[0]
 						.profiles.filter((profile) => profile.id !== user.id)
 						.map(({ username, email }, idx) => (
 							<div className="profile-details" key={idx}>
