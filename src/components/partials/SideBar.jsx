@@ -200,7 +200,16 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 											)}
 										</div>
 									</div>
-									<p style={{ marginBottom: '0' }}>This is the last message</p>
+									<p style={{ marginBottom: '0' }}>
+										{thread.Messages.length > 0 ? (
+											StringController.truncateString(
+												thread.Messages[thread.Messages.length - 1].content,
+												34
+											)
+										) : (
+											'Start a Conversation'
+										)}
+									</p>
 								</div>
 							</NavLink>
 						</li>
