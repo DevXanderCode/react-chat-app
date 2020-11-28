@@ -37,7 +37,7 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
     .sidebar{
         background-color: white;
         float: left;
-        width: 300px;
+        width: 400px;
         max-width: 25%;
         height: 100vh;
         position: fixed;
@@ -48,17 +48,17 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
     }
     ul.thread-list{
         list-style-type: none;
-		padding: 0;
 		overflow: hidden;
 		overflow-y: auto;
 		padding: 15px 0;
 		display: flex;
 		flex-direction: column; 
+		
     }
     ul.thread-list li a .zmdi {
         float: left;
         font-size: 70px;
-        padding: 5px 15px;
+        padding: 15px 15px;
         color: #ccc;
     }
     ul.thread-list li a{
@@ -66,6 +66,8 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 		color: #444;
 		display: flex;
 		// flex-direction: column;
+		border-bottom: 1px solid #D6E4D6;
+		background-color: #DFEEDF
 	}
 	ul.thread-list li a div.detail {
 		display: flex;
@@ -87,6 +89,7 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
         font-size: 14px;
 		color: #999;
 		width: 100%;
+		margi-bottom: 0;
     }
     ul.thread-list label{
         padding-left: 20px;
@@ -156,14 +159,16 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 				</ul>
 			) : threads.length > 0 ? (
 				<ul className="thread-list">
-					<label>Messages</label>
+					<label style={{ borderBottom: '1px solid #D6E4D6', paddingBottom: '.5rem', marginBottom: '0' }}>
+						Messages
+					</label>
 					{threads.map((thread, threadIndex) => (
 						<li key={threadIndex}>
 							<Link to={`/${thread.id}`}>
 								<i className="zmdi zmdi-account-circle" />
 								<div className="detail">
 									<h5>{thread.id}</h5>
-									<p>This is the last message</p>
+									<p style={{ marginBottom: '0' }}>This is the last message</p>
 								</div>
 							</Link>
 						</li>

@@ -20,8 +20,8 @@ const Header = ({ logout, ...props }) => {
 	return Style.it(
 		`
     .header-container{
-        width: calc(100% - 300px);
-        margin-left: 300px;
+        width: calc(100% - 340px);
+        margin-left: 340px;
         display: flex;
         padding: 20px 10px;
         box-shadow: 0px 20px 5px rgba(0,0,0,0.2); 

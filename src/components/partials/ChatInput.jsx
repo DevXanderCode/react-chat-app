@@ -28,9 +28,9 @@ const ChatInput = ({ user, socket, ...props }) => {
 		`
         .input-view{
             position: fixed;
-            left: 300px;
+            left: 340px;
             bottom: 0;
-			width: calc(100% - 300px);
+			width: calc(100% - 340px);
 			display: flex;
 			box-shadow: 0px -1px 5px rgba(0,0,0,0.2)
         }
