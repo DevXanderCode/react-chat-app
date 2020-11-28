@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link, NavLink } from 'react-router-dom';
+import { withRouter, Link, NavLink, Redirect } from 'react-router-dom';
 import Styled from 'style-it';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -157,10 +157,12 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 					<label> Results</label>
 					{users.filter((u) => u.id !== user.id).map((user, idx) => (
 						<li key={idx}>
-							<a
+							<Link
+								to="/"
 								onClick={(e) => {
-									e.preventDefault();
+									// e.preventDefault();
 									findOrCreateThread(user.id);
+									setSearchValue('');
 								}}
 							>
 								<i className="zmdi zmdi-account-circle" />
@@ -168,7 +170,7 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 									<h5>{StringController.truncateString(user.name, 24)}</h5>
 									<p>{user.email}</p>
 								</div>
-							</a>
+							</Link>
 						</li>
 					))}
 				</ul>
