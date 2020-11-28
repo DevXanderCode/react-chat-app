@@ -3,6 +3,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { IconButton } from '@material-ui/core';
 import { connect } from 'react-redux';
 import Style from 'style-it';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import * as AuthActions from '../../store/actions/authActions';
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({ threads, users, user, logout, ...props }) => {
 	const classes = useStyles();
+	let threadId = props.match.params.threadId;
 
 	return Style.it(
 		`
@@ -52,10 +54,17 @@ const Header = ({ threads, users, user, logout, ...props }) => {
 		<div className="header-container">
 			<div className="profile-container">
 				<i className="zmdi zmdi-account-circle" />
-				<div className="profile-details">
-					<h5>UserName</h5>
-					<p>Email</p>
-				</div>
+				{threads &&
+					threadId &&
+					threads
+						.filter((thread) => thread.id === threadId && thread.profiles)[0]
+						.profiles.filter((profile) => profile.id !== user.id)
+						.map(({ username, email }, idx) => (
+							<div className="profile-details" key={idx}>
+								<h5>{username}</h5>
+								<p>{email}</p>
+							</div>
+						))}
 			</div>
 			<Tooltip title="LogOut" arrow interactive>
 				<IconButton
@@ -83,4 +92,4 @@ const mapDispatchToProps = (dispatch) => ({
 	}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
