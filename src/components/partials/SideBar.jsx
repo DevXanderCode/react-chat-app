@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
 import Styled from 'style-it';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -68,6 +68,9 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 		// flex-direction: column;
 		border-bottom: 1px solid #D6E4D6;
 		background-color: #DFEEDF
+	}
+	ul.thread-list li a:hover{
+		background-color: #6BB36B
 	}
 	ul.thread-list li a div.detail {
 		display: flex;
@@ -164,13 +167,17 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 					</label>
 					{threads.map((thread, threadIndex) => (
 						<li key={threadIndex}>
-							<Link to={`/${thread.id}`}>
+							<NavLink
+								to={`/${thread.id}`}
+								activeClassName="thread-active"
+								activeStyle={{ backgroundColor: '#6BB36B' }}
+							>
 								<i className="zmdi zmdi-account-circle" />
 								<div className="detail">
 									<h5>{thread.id}</h5>
 									<p style={{ marginBottom: '0' }}>This is the last message</p>
 								</div>
-							</Link>
+							</NavLink>
 						</li>
 					))}
 				</ul>
