@@ -38,8 +38,8 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
     .sidebar{
         background-color: white;
         float: left;
-        width: 400px;
-        max-width: 25%;
+        width: 340px;
+        // max-width: 25%;
         height: 100vh;
         position: fixed;
         top: 0;
@@ -51,10 +51,10 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
         list-style-type: none;
 		overflow: hidden;
 		overflow-y: auto;
-		padding: 15px 0;
+		padding: 15px 0 0;
 		display: flex;
 		flex-direction: column; 
-		
+		margin-bottom: 0;
     }
     ul.thread-list li a .zmdi {
         float: left;
@@ -226,7 +226,7 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 										{thread.Messages && thread.Messages.length > 0 ? (
 											StringController.truncateString(
 												thread.Messages[thread.Messages.length - 1].content,
-												34
+												33
 											)
 										) : (
 											'Start a Conversation'

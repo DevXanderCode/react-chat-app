@@ -10,11 +10,11 @@ import * as AuthActions from '../../store/actions/authActions';
 const useStyles = makeStyles((theme) => ({
 	logoutBtn: {
 		position: 'relative',
-		left: 'calc(100% - 50px)'
+		left: 'calc(100% - 250px)'
 	}
 }));
 
-const Header = ({ logout, ...props }) => {
+const Header = ({ threads, users, user, logout, ...props }) => {
 	const classes = useStyles();
 
 	return Style.it(
@@ -23,13 +23,40 @@ const Header = ({ logout, ...props }) => {
         width: calc(100% - 340px);
         margin-left: 340px;
         display: flex;
-        padding: 20px 10px;
+        padding: 0 10px;
         box-shadow: 1px 1px 5px 15px rgba(112,112,112,.3);
         margin-bottom: .08rem; 
-    }   
+    }
+    .profile-container{
+        display: flex;
+        jus
+    } 
+    .profile-container .profile-details{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .profile-container .profile-details h5{
+        margin-bottom: 0
+    }
+    .profile-container .profile-details p{
+        margin-bottom: 0
+    }
+    .profile-container .zmdi.zmdi-account-circle{
+        font-size: 75px;
+        color: #ddd;
+        padding: 15px;
+    }
 
     `,
 		<div className="header-container">
+			<div className="profile-container">
+				<i className="zmdi zmdi-account-circle" />
+				<div className="profile-details">
+					<h5>UserName</h5>
+					<p>Email</p>
+				</div>
+			</div>
 			<Tooltip title="LogOut" arrow interactive>
 				<IconButton
 					className={classes.logoutBtn}
