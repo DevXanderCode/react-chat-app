@@ -44,7 +44,7 @@ const ThreadView = ({ socket, threads, ...props }) => {
 							<Message
 								value={msg}
 								key={mId}
-								profile={thread.profiles.filter((p) => p.id === msg.userId)[0]}
+								profile={thread.profiles && thread.profiles.filter((p) => p.id === msg.userId)[0]}
 							/>
 						))
 					) : (

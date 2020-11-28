@@ -5,6 +5,7 @@ import Styled from 'style-it';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import moment from 'moment';
 import StringController from '../../controllers/StringContoller';
 
 const styles = makeStyles({
@@ -76,21 +77,31 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
+		// align-items: center;
 		justify-items: center;
 		align-content: center;
+		width: 100%;
+		margin-right: 15px;
 	}
-    ul.thread-list li a div.detail h5 {
-        font-size: 14px;
+	ul.thread-list li a div.detail .more-detail{
+		display: flex;
+		justify-content: space-between;
+		// padding-right: 5px;
+	}
+    ul.thread-list li a div.detail .more-detail h5 {
+        font-size: 16px;
         padding: 0px;
         font-weight: 700;
         padding-bottom: 0;
 		margin-bottom: 0;
-		width: 100%;
-    }
+		// width: 100%;
+	}
+	ul.thread-list li a div.detail .more-detail div{
+		// justify-content: flex-end;
+	}
     ul.thread-list li a div.detail p {
         font-size: 14px;
-		color: #999;
+		color: #404040;
 		width: 100%;
 		margi-bottom: 0;
     }
@@ -174,7 +185,20 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 							>
 								<i className="zmdi zmdi-account-circle" />
 								<div className="detail">
-									<h5>{thread.id}</h5>
+									<div className="more-detail">
+										<h5>{StringController.truncateString(thread.id, 15)}</h5>
+										{/* {console.log(
+											'logging the last message',
+											thread.Messages[thread.Messages.length - 1].date
+										)} */}
+										<div>
+											{thread.Messages.length > 0 ? (
+												moment(thread.Messages[thread.Messages.length - 1].date).format('HH:mm')
+											) : (
+												moment(thread.lastUpdated).format('HH:mm')
+											)}
+										</div>
+									</div>
 									<p style={{ marginBottom: '0' }}>This is the last message</p>
 								</div>
 							</NavLink>

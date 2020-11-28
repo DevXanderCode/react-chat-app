@@ -81,7 +81,7 @@ const Message = ({ value, msg, user, profile, ...props }) => {
 				<div className={`message-item ${value.userId === user.id ? 'msg-right' : 'msg-left'}`}>
 					{/* <i className="zmdi zmdi-account-circle" /> */}
 					<div className="time-stamp time-stamp-left-none">{moment(value.date).format('HH:mm')}</div>
-					<div className="chat-bubble" title={profile.name} data-toggle="tooltip">
+					<div className="chat-bubble" title={profile && profile.name} data-toggle="tooltip">
 						{value.content}
 					</div>
 					<div className="time-stamp time-stamp-none">{moment(value.date).format('HH:mm')}</div>
