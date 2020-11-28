@@ -131,6 +131,14 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 	input.form-control:focus{
 		box-shadow: none
 	}
+	.sidebar form {
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0px;
+		background-color: white;
+		padding: 2px 10px;
+		padding-bottom: 10px;
+	}
     `,
 		<div className="sidebar">
 			<form
