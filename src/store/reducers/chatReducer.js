@@ -4,7 +4,9 @@ const defaultState = {
 	threads: [],
 	multipleThread: '',
 	users: [],
-	Messages: []
+	Messages: [],
+	threadExist: '',
+	thread: {}
 };
 
 const chat = (state = defaultState, action) => {
@@ -20,13 +22,14 @@ const chat = (state = defaultState, action) => {
 				users: [ ...action.payload ]
 			};
 		case 'ADD_THREAD':
-			// console.log('logging action .payload of the add thread', action.payload);
+			console.log('logging action .payload of the add thread', action.payload);
 			return {
 				...state,
 				threads:
-					state.threads.filter((t) => t.id === action.payload.id).length === 0
-						? [ action.payload ].concat(state.threads)
-						: state.threads
+					state.threads.filter((t) => t.id === action.payload.thread.id).length === 0
+						? [ action.payload.thread ].concat(state.threads)
+						: state.threads,
+				threadExist: action.payload.threadExist
 			};
 		case 'INITIAL_THREADS':
 			// console.log('logging the action.payload of initial thread', action.payload);
@@ -54,6 +57,15 @@ const chat = (state = defaultState, action) => {
 					})
 				]
 			};
+		case 'GOT_THREAD':
+			console.log('thread', action.payload);
+			return {
+				...state,
+				thread: action.payload.thread,
+				threadExist: action.payload.threadExist,
+				threadId: action.payload.threadId
+			};
+			break;
 		case 'ADD_SINGLE_MESSAGE':
 			console.log('logging ADD_SINGLE_MESSAGE', action.payload);
 			return {

@@ -17,9 +17,11 @@ const styles = makeStyles({
 	}
 });
 
-const SideBar = ({ socket, users, user, threads, ...props }) => {
+const SideBar = ({ socket, users, user, threads, threadExist, thread, threadId, ...props }) => {
 	const classes = styles();
 	const [ searchValue, setSearchValue ] = React.useState('');
+
+	console.log('logging thread', threadExist, threadId);
 
 	const search = () => {
 		socket.send(JSON.stringify({ type: 'SEARCH', data: searchValue }));
@@ -166,12 +168,12 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 					{users.filter((u) => u.id !== user.id).map((user, idx) => (
 						<li key={idx}>
 							<Link
-								to="/"
 								onClick={(e) => {
 									// e.preventDefault();
 									findOrCreateThread(user.id);
 									setSearchValue('');
 								}}
+								to={`${threadExist ? '/' + threadId : '/'}`}
 							>
 								<i className="zmdi zmdi-account-circle" />
 								<div className="detail">

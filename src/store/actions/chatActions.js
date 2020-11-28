@@ -41,7 +41,13 @@ export const setupSocket = (token, userId) => {
 				case 'ADD_THREAD':
 					dispatch({
 						type: 'ADD_THREAD',
-						payload: data.data
+						payload: { thread: data.thread, threadExist: data.threadExist }
+					});
+					break;
+				case 'GOT_THREAD':
+					dispatch({
+						type: 'GOT_THREAD',
+						payload: { threadId: data.thread.id, thread: data.thread, threadExist: data.threadExist }
 					});
 					break;
 				case 'INITIAL_THREADS':

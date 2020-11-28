@@ -12,7 +12,11 @@ const useStyles = makeStyles((theme) => ({
 	logoutBtn: {
 		position: 'relative',
 		left: 'calc(100% - 250px)',
-		margin: '25px 0px'
+		margin: '25px 0px',
+		'&:hover': {
+			backgroundColor: '#6BB36B',
+			color: '#fff'
+		}
 	}
 }));
 
