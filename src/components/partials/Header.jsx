@@ -24,7 +24,8 @@ const Header = ({ logout, ...props }) => {
         margin-left: 340px;
         display: flex;
         padding: 20px 10px;
-        box-shadow: 0px 20px 5px rgba(0,0,0,0.2); 
+        box-shadow: 1px 1px 5px 15px rgba(112,112,112,.3);
+        margin-bottom: .08rem; 
     }   
 
     `,
