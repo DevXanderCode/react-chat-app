@@ -191,7 +191,19 @@ const SideBar = ({ socket, users, user, threads, ...props }) => {
 								<i className="zmdi zmdi-account-circle" />
 								<div className="detail">
 									<div className="more-detail">
-										<h5>{StringController.truncateString(thread.id, 15)}</h5>
+										{/* <h5>{StringController.truncateString(thread.id, 15)}</h5> */}
+										<h5>
+											{thread.profiles &&
+											thread.profiles.length > 0 &&
+											thread.profiles.length <= 2 ? (
+												StringController.truncateString(
+													thread.profiles.filter((profile) => profile.id !== user.id)[0].name,
+													15
+												)
+											) : (
+												thread.id
+											)}
+										</h5>
 										<div>
 											{thread.Messages.length > 0 ? (
 												moment(thread.Messages[thread.Messages.length - 1].date).format('HH:mm')
