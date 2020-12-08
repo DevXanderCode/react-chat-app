@@ -76,16 +76,35 @@ const Login = ({ socket, ...props }) => {
 	.form-size {
 		width: 50%;
 	}
+	.form {
+		width: 100%
+	}
 
 	@media only screen and (max-width: 768px){
 		.form-size{
 			width: 100%;
+			// height: 100%;
 			transition: all 0.6s ease-in-out;
+		}
+		.form-wrapper {
+			background-color: #FFFFFF;
+			display: flex;
+			// align-items: center;
+			justify-content: center;
+			// flex-direction: column;
+			padding: 0 15px;
+			// height: 100%;
+			text-align: center;
+			// margin-top: 3rem;
+		}
+		.form{ 
+			width: 100%;
+			height: 100%
 		}
 	}
 	`,
 		<div className="form-wrapper form-size">
-			<div style={{ width: '100%' }}>
+			<div className="form">
 				<h2>LOGIN</h2>
 				<Formik
 					initialValues={initialValues}

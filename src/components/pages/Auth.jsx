@@ -226,6 +226,16 @@ const Auth = ({ ...props }) => {
 			.desktop-d-none{
 				display: block
 			}
+			.auth-wrapper{	
+				background: #f6f5f7;
+				display: flex;
+				justify-content: normal;
+				font-family: 'Montserrat', sans-serif;
+				min-height: 103vh;
+				margin: -20px 0 0px;
+				transition: all 0.6s ease-in-out;
+				padding-top: 1.5rem
+				}
 		}
 		`,
 		<div className="auth-wrapper">
