@@ -105,7 +105,7 @@ const Login = ({ socket, ...props }) => {
 	`,
 		<div className="form-wrapper form-size">
 			<div className="form">
-				<h2>LOGIN</h2>
+				<h2 style={{ margin: '2rem 0' }}>LOGIN</h2>
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchema}

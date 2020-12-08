@@ -126,7 +126,7 @@ const Signup = ({ socket, ...props }) => {
 	`,
 		<div className="form-wrapper form-size">
 			<div className="form">
-				<h2>Signup</h2>
+				<h2 style={{ margin: '2rem 0' }}>Signup</h2>
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchema}

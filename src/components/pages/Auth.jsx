@@ -235,7 +235,10 @@ const Auth = ({ ...props }) => {
 				margin: -20px 0 0px;
 				transition: all 0.6s ease-in-out;
 				padding-top: 1.5rem
-				}
+			}
+			.auth-container{
+				box-shadow: none;
+			}
 		}
 		`,
 		<div className="auth-wrapper">
