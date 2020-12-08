@@ -104,6 +104,8 @@ const Auth = ({ ...props }) => {
 			width: 768px;
 			max-width: 100%;
 			min-height: 480px;
+			height: 100%;
+			display: grid;
 			transition: all 0.6s ease-in-out;
 		}
 		.form-container {
@@ -123,8 +125,8 @@ const Auth = ({ ...props }) => {
 		}
 		.overlay {
 			background: #FF416C;
-			background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-			background: linear-gradient(to right, #FF4B2B, #FF416C);
+			background: -webkit-linear-gradient(to right,  #82e082,#56a356);
+			background: linear-gradient(to right, #82e082, #56a356);
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-position: 0 0;
@@ -195,8 +197,8 @@ const Auth = ({ ...props }) => {
 			}
 			.mobile-overlay{
 			background: #FF416C;
-			background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-			background: linear-gradient(to right, #FF4B2B, #FF416C);
+			background: -webkit-linear-gradient(to right, #82e082, #56a356);
+			background: linear-gradient(to right, #82e082, #56a356);
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-position: 0 0;

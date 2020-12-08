@@ -13,8 +13,8 @@ import * as AuthActions from '../../store/actions/authActions';
 const useStyles = makeStyles({
 	button: {
 		borderRadius: '20px',
-		border: '1px solid #FF4B2B',
-		backgroundColor: '#FF4B2B',
+		border: '1px solid #82e082',
+		backgroundColor: '#56a356',
 		color: '#FFFFFF',
 		fontSize: '12px',
 		fontWeight: 'bold',
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 
 		'&:hover': {
 			color: 'black',
-			backgroundColor: 'rgba(255,75,43, .4)'
+			backgroundColor: '#82e082'
 		},
 
 		'&.focus': {
@@ -71,7 +71,7 @@ const Login = ({ socket, ...props }) => {
 		padding: 0 15px;
 		height: 100%;
 		text-align: center;
-		margin-top: 3rem;
+		// margin-top: 3rem;
 	}
 	.form-size {
 		width: 50%;
