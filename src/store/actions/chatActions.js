@@ -2,7 +2,7 @@ import * as AuthActions from './authActions';
 
 export const setupSocket = (token, userId) => {
 	return (dispatch) => {
-		const socket = new WebSocket('ws://localhost:8080');
+		const socket =  process.env.NODE_ENV === 'development' ? new WebSocket('ws://localhost:8080') : new WebSocket("https://padi-mi-backend.herokuapp.com")
 
 		socket.onopen = () => {
 			if (token) {
@@ -65,6 +65,7 @@ export const setupSocket = (token, userId) => {
 							messages: data.messages
 						}
 					});
+					document.getElementById('main-view').scrollTop = document.getElementById('main-view').scrollHeight;
 					break;
 				case 'ADD_MESSAGE_TO_THREAD':
 					dispatch({
