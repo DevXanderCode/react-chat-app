@@ -53,7 +53,8 @@ const Message = ({ value, msg, user, profile, ...props }) => {
       .time-stamp{
           font-size: .8rem;
         //   display: flex;
-          color: #6BB36B;
+        //   color: #6BB36B;
+        color: #fdfdfd;
           float: left;
           tex-align: left;
           margin-top: auto;
@@ -61,7 +62,8 @@ const Message = ({ value, msg, user, profile, ...props }) => {
           padding-left: 1.5%;
       }
       .msg-right .time-stamp{
-         color: #11F011;
+        //  color: #11F011;
+        color: #fdfdfd;
          float:right;
         text-align: right;
         margin-left: auto;

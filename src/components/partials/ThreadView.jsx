@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import Styled from 'style-it';
 import Message from './Message';
+import bgImage from '../../images/chat-bg-1.jpg';
 
 const ThreadView = ({ socket, threads, ...props }) => {
 	React.useEffect(
@@ -13,14 +14,17 @@ const ThreadView = ({ socket, threads, ...props }) => {
 				socket.send(
 					JSON.stringify({
 						type: 'THREAD_LOAD',
-						data: { threadId: props.match.params.threadId, skip }
+						data: {
+							threadId: props.match.params.threadId,
+							skip
+						}
 					})
 				);
 			}
 		},
 		[ props.match.params.threadId ]
 	);
-
+	//  const bgImage = require("../../images/chat-bg-1.jpg");
 	return Styled.it(
 		`
     .main-view{
@@ -32,26 +36,46 @@ const ThreadView = ({ socket, threads, ...props }) => {
 		max-height: calc(100% - 150px);
 		overflow: hidden;
 		overflow-y: auto;
+		background-size: cover;
+		object-fit: cover;
+	}
+	.main-view:before{
+		opacity: .2
+	}
+	.overlay{
+		position: relative;
+		min-height: 100%;
+		// width: calc(100% - 340px);
+		// max-height: calc(100% - 150px);
+		background-color: rgba(150,150,150,.5);
 		padding-bottom: 10px;
-    }
+	}
     `,
-		<div className="main-view" id="main-view">
-			{/* <h5>hello from the ThreadView component</h5> */}
-			{threads.filter((thread) => thread.id === props.match.params.threadId).map((thread, idx) => (
-				<div key={idx} className="messenger-container">
-					{thread.Messages && thread.Messages.length > 0 ? (
-						thread.Messages.map((msg, mId) => (
-							<Message
-								value={msg}
-								key={mId}
-								profile={thread.profiles && thread.profiles.filter((p) => p.id === msg.userId)[0]}
-							/>
-						))
-					) : (
-						<p> No Messages</p>
-					)}
-				</div>
-			))}
+		<div
+			className="main-view"
+			id="main-view"
+			style={{
+				backgroundImage: `url(${bgImage})`
+			}}
+		>
+			<div className='overlay'>
+				{/* <h5>hello from the ThreadView component</h5> */}
+				{threads.filter((thread) => thread.id === props.match.params.threadId).map((thread, idx) => (
+					<div key={idx} className="messenger-container">
+						{thread.Messages && thread.Messages.length > 0 ? (
+							thread.Messages.map((msg, mId) => (
+								<Message
+									value={msg}
+									key={mId}
+									profile={thread.profiles && thread.profiles.filter((p) => p.id === msg.userId)[0]}
+								/>
+							))
+						) : (
+							<p> No Messages </p>
+						)}
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };
