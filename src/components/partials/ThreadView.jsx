@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import Styled from 'style-it';
 import Message from './Message';
-import bgImage from '../../images/chat-bg-1.jpg';
+import bgImage from '../../images/chat-bg-1.png';
 
 const ThreadView = ({ socket, threads, ...props }) => {
 	React.useEffect(
@@ -42,14 +42,7 @@ const ThreadView = ({ socket, threads, ...props }) => {
 	.main-view:before{
 		opacity: .2
 	}
-	.overlay{
-		position: relative;
-		min-height: 100%;
-		// width: calc(100% - 340px);
-		// max-height: calc(100% - 150px);
-		background-color: rgba(150,150,150,.5);
-		padding-bottom: 10px;
-	}
+
     `,
 		<div
 			className="main-view"
@@ -58,7 +51,7 @@ const ThreadView = ({ socket, threads, ...props }) => {
 				backgroundImage: `url(${bgImage})`
 			}}
 		>
-			<div className='overlay'>
+	
 				{/* <h5>hello from the ThreadView component</h5> */}
 				{threads.filter((thread) => thread.id === props.match.params.threadId).map((thread, idx) => (
 					<div key={idx} className="messenger-container">
@@ -75,7 +68,7 @@ const ThreadView = ({ socket, threads, ...props }) => {
 						)}
 					</div>
 				))}
-			</div>
+
 		</div>
 	);
 };
